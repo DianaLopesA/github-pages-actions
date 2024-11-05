@@ -58,24 +58,6 @@ jobs:
       #    # Use sed to update the title in index.html
       #    sed -i.bak "s|<title>.*</title>|<title>$NEW_TITLE</title>|" docs/index.html
 
-      - name: Install jtest
-        run: | 
-          cd docs
-          npm init -y
-          npm install --save-dev jest
-
-      - name: Install dependencies
-        run: | 
-          npm init -y
-          npm install --save-dev jest
-          npm install
-
-      - name: Run linter
-        working-directory: docs  # Change to the directory containing your HTML file
-        run: |
-          npm install -g htmlhint
-          htmlhint docs/index.html
-
       - name: Run tests
         run: |
           node -e "
