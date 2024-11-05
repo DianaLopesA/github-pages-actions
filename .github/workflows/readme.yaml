@@ -59,7 +59,10 @@ jobs:
       #    sed -i.bak "s|<title>.*</title>|<title>$NEW_TITLE</title>|" docs/index.html
 
       - name: Install dependencies
-        run: npm install
+        run: | 
+          npm init -y
+          npm install --save-dev jest
+          npm install
 
       - name: Run tests
         run: npm test 
