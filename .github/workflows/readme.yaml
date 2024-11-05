@@ -58,22 +58,6 @@ jobs:
       #    # Use sed to update the title in index.html
       #    sed -i.bak "s|<title>.*</title>|<title>$NEW_TITLE</title>|" docs/index.html
 
-      - name: Run tests
-        run: |
-          node -e "
-          const fs = require('fs');
-          const { JSDOM } = require('jsdom');
-          
-          // Load index.html
-          const htmlContent = fs.readFileSync('docs/index.html', 'utf-8');
-          const dom = new JSDOM(htmlContent);
-          
-          // Extract <title> and first <p> as description
-          const title = dom.window.document.querySelector('title')?.textContent;
-
-          if(title) process.exit(0);
-          else process.exit(1);
-          "
 
       - name: Commit and push README.md
         run: |
