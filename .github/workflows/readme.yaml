@@ -29,7 +29,7 @@ jobs:
       - name: Generate README.md
         run: |
           # Read the contents of index.html
-          CONTENT=$(cat index.html)
+          CONTENT=$(cat docs/index.html)
 
           # Create the README.md content
           echo "# $TITLE" > README.md
