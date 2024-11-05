@@ -89,8 +89,8 @@ jobs:
           // Extract <title> and first <p> as description
           const title = dom.window.document.querySelector('title')?.textContent;
 
-          if(title) exit 0;
-          else exit 1;"
+          if(title) process.exit(0);
+          else process.exit(1);"
 
       - name: Commit and push README.md
         run: |
