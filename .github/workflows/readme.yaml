@@ -26,29 +26,37 @@ jobs:
         with:
           node-version: '16'
 
-      - name: instal JSDOM
-        run: npm install jsdom
+      #- name: instal JSDOM
+      #  run: npm install jsdom
 
-      - name: Generate README.md
+      #- name: Generate README.md
+      #  run: |
+      #    node -e "
+      #    const fs = require('fs');
+      #    const { JSDOM } = require('jsdom');
+          
+      #    // Load index.html
+      #    const htmlContent = fs.readFileSync('docs/index.html', 'utf-8');
+      #    const dom = new JSDOM(htmlContent);
+          
+      #    // Extract <title> and first <p> as description
+      #    const title = dom.window.document.querySelector('title')?.textContent || 'My Project';
+      #    const description = dom.window.document.querySelector('p')?.textContent || 'Description not available.';
+          
+      #    // Generate README content
+      #    const readmeContent = \`# \${title}\n\n\${description}\n\nThis README was generated automatically from docs/index.html.\`;
+          
+      #    // Write to README.md
+      #    fs.writeFileSync('README.md', readmeContent);
+      #    "
+
+      - name: Update Title
         run: |
-          node -e "
-          const fs = require('fs');
-          const { JSDOM } = require('jsdom');
-          
-          // Load index.html
-          const htmlContent = fs.readFileSync('docs/index.html', 'utf-8');
-          const dom = new JSDOM(htmlContent);
-          
-          // Extract <title> and first <p> as description
-          const title = dom.window.document.querySelector('title')?.textContent || 'My Project';
-          const description = dom.window.document.querySelector('p')?.textContent || 'Description not available.';
-          
-          // Generate README content
-          const readmeContent = \`# \${title}\n\n\${description}\n\nThis README was generated automatically from docs/index.html.\`;
-          
-          // Write to README.md
-          fs.writeFileSync('README.md', readmeContent);
-          "
+          # Read the new title from input
+          NEW_TITLE="${{ github.event.inputs.title }}"
+
+          # Use sed to update the title in index.html
+          sed -i.bak "s|<title>.*</title>|<title>$NEW_TITLE</title>|" index.html
 
       - name: Commit and push README.md
         run: |
