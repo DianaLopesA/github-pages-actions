@@ -58,6 +58,12 @@ jobs:
           # Use sed to update the title in index.html
           sed -i.bak "s|<title>.*</title>|<title>$NEW_TITLE</title>|" docs/index.html
 
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test 
+
       - name: Commit and push README.md
         run: |
           git config --global user.name "github-actions[bot]"
