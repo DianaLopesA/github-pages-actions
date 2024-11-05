@@ -58,32 +58,25 @@ jobs:
       #    # Use sed to update the title in index.html
       #    sed -i.bak "s|<title>.*</title>|<title>$NEW_TITLE</title>|" docs/index.html
 
-      #- name: Commit and push README.md
-      #  run: |
-      #    git config --global user.name "github-actions[bot]"
-      #    git config --global user.email "github-actions[bot]@users.noreply.github.com"
-      #    git add docs/index.html docs/index.html.bak
-      #    git commit -m "Update Title"
-      #    git push
-
-
-  test:
-    runs-on: ubuntu-latest
-    needs: lint  # Ensure tests run only after linting passes
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-  
-      - name: Install Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-  
       - name: Install dependencies
         run: | 
           npm init -y
           npm install --save-dev jest
           npm install
-  
+
+      - name: Run linter
+        working-directory: docs  # Change to the directory containing your HTML file
+        run: |
+          npm install -g htmlhint
+          htmlhint docs/index.html
+
       - name: Run tests
         run: npm test  # Runs Jest tests
+
+      - name: Commit and push README.md
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/index.html docs/index.html.bak
+          git commit -m "Run test"
+          git push
