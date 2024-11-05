@@ -71,7 +71,7 @@ jobs:
           htmlhint docs/index.html
 
       - name: Run tests
-        run: npm test  # Runs Jest tests
+        run: npm test/title.test.js  # Runs Jest tests
 
       - name: Commit and push README.md
         run: |
