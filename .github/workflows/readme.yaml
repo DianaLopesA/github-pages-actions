@@ -26,8 +26,8 @@ jobs:
         with:
           node-version: '16'
 
-      #- name: instal JSDOM
-      #  run: npm install jsdom
+      - name: instal JSDOM
+        run: npm install jsdom
 
       #- name: Generate README.md
       #  run: |
