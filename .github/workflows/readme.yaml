@@ -66,14 +66,6 @@ jobs:
       #    git commit -m "Update Title"
       #    git push
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run linter
-        run: |
-          # Add your linter command here (e.g., HTMLHint)
-          npm install -g htmlhint
-          htmlhint index.html
 
  test:
     runs-on: ubuntu-latest
