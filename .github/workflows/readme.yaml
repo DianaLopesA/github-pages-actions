@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   generate-readme:
-  	runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
