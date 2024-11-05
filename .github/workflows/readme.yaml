@@ -61,6 +61,7 @@ jobs:
       - name: Install jtest
         run: | 
           cd docs
+          npm init -y
           npm install --save-dev jest
 
       - name: Install dependencies
