@@ -50,13 +50,13 @@ jobs:
       #    fs.writeFileSync('README.md', readmeContent);
       #    "
 
-      # - name: Update Title
-      #  run: |
-      #    # Read the new title from input
-      #    NEW_TITLE="${{ github.event.inputs.title }}"
+      - name: Update Title
+        run: |
+          # Read the new title from input
+          NEW_TITLE="${{ github.event.inputs.title }}"
 
-      #    # Use sed to update the title in index.html
-      #    sed -i.bak "s|<title>.*</title>|<title>$NEW_TITLE</title>|" docs/index.html
+          # Use sed to update the title in index.html
+          sed -i.bak "s|<title>.*</title>|<title>$NEW_TITLE</title>|" docs/index.html
 
 
       - name: Commit and push README.md
