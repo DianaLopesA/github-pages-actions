@@ -60,8 +60,8 @@ jobs:
 
       - name: Commit and push README.md
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add README.md
-          git commit -m "Update README.md from index.html"
+          git commit -m "Auto-generate README from index.html"
           git push
