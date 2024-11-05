@@ -67,23 +67,23 @@ jobs:
       #    git push
 
 
- test:
+  test:
     runs-on: ubuntu-latest
     needs: lint  # Ensure tests run only after linting passes
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+  
       - name: Install Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '14'
-
+  
       - name: Install dependencies
         run: | 
           npm init -y
           npm install --save-dev jest
           npm install
-
+  
       - name: Run tests
         run: npm test  # Runs Jest tests
